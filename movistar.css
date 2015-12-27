@@ -1,0 +1,64 @@
+*{ margin:0; padding:0; outline:none}
+
+html, body {  width:100%; height:100%;background: url(images/back_1.jpg) center center no-repeat; background-size:100%;color:#FFF; font-family: 'movistar_headlineregular';}
+
+#contenedor1{ display:block; width:100%; height:510px;  position:relative; }
+
+.fontbold{font-family: 'movistar_headlinebold';}
+
+.fontregular{font-family: 'movistar_headlineregular';}
+
+.pielg{ display:block; width:100%; height:54px; background:url(images/logo_lg.png) left center no-repeat; background-color:#FFF; position:absolute; left:0px; bottom:5px;}
+
+.logomovistar{display:block; width:200px; height:45px; background: url(images/logo_movistar.png) center center no-repeat; position:absolute; right:32px; top:30px;}
+
+.botones{ display:block; width:338px; height:75px; line-height:70px; text-align:center; font-size:50px; color:#FFF; background-color:#0096ad; text-decoration:none; left:50%; margin-left:-169px; position:absolute; bottom:100px; -webkit-box-shadow: 0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+-moz-box-shadow:    0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+box-shadow:         0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px; cursor:pointer}
+.botones:hover{ background-color:#005476;}
+
+.logo4g{ display:block; background:url(images/logo_4g.png) center center no-repeat; width:165px; height:110px; position:absolute; top:-130px; right:30px;}
+
+.pag1{ display:block; width:100%; height:510px; background:url(images/verano4G_1.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
+.genial{ display:block; width:100%; height:510px; background: url(images/genial.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
+.ups{ display:block; width:100%; height:510px; background: url(images/ups.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
+
+.ganastecinta{ display:block; width:100%; height:510px; background: url(images/ganaste_cinta.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
+.ganasteauricular{ display:block; width:100%; height:510px; background: url(images/ganaste_auricular.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
+
+#cajaformulario{ display:block; position:absolute; left:10%; top:50px; width:564px;}
+#cajapreguntas{ display:block; position:absolute; left:10%; top:70px; width:564px;}
+
+.lineaform{ display:block; width:564px; height:44px; margin-top:9px; margin-bottom:9px; line-height:44px; font-size:27px; color:#FFF; position:relative;}
+
+.form{display:block; width:289px; height:44px; line-height:44px; text-align:left; padding-left:10px; padding-right:10px;  position:absolute; top:0px; right:0px; -webkit-box-shadow: 0px 3px 0px 0px rgba(23, 42, 50, 0.5);
+-moz-box-shadow:    0px 3px 0px 0px rgba(23, 42, 50, 0.5);
+box-shadow:         0px 3px 0px 0px rgba(23, 42, 50, 0.5);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px; background-color:#7fcad6; overflow:hidden}
+
+.imputtext{ display:block; width:289px; height:44px; line-height:44px;font-size:18px; color:#0096ad; background-color:#0096ad; border:none; background:none; font-family: 'movistar_headlineregular';}
+
+.botonenviar{ display:block; width:309px; height:70px; line-height:65px; text-align:center; font-size:50px; color:#FFF; background-color:#0096ad; text-decoration:none;  position:absolute;  -webkit-box-shadow: 0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+-moz-box-shadow:    0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+box-shadow:         0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px; top:0px; right:0px; margin-top:30px; cursor:pointer}
+.botonenviar:hover{ background-color:#005476;}
+
+
+.pregunta{display:block; position:relative; width:564px; font-size:35px; color:#FFF; line-height:35px;}
+.numeropreg{display:block; position:absolute; text-align:right; width:50px; font-size:35px; color:#FFF; left:-60px; top:0px; }
+.respuesta{display:block; width:440px;padding:5px; padding-left:20px; padding-right:20px; text-align:left; font-size:20px; color:#FFF; background-color:#0096ad; text-decoration:none;  -webkit-box-shadow: 0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+-moz-box-shadow:    0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+box-shadow:         0px 3px 0px 0px rgba(23, 42, 50, 0.7);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px; margin-top:20px; margin-bottom:20px; cursor:pointer;}
+
+.respuesta:hover{color:#0096ad; background-color:#7fcad6;}

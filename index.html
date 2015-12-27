@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Movistar 4G</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet"  href="movistar.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="fonts/fontsmovistar.css" type="text/css" charset="utf-8" />
+<style>
+#admin{ width:50px; height:50px; position:fixed; top:0; left:0; z-index:10000; background:url(images/Vacio.gif);}
+#panel{ width:100%; height:100%; position:fixed;z-index:20000; background:#CCC; display:none}
+label{ font-family:Verdana, Geneva, sans-serif; font-size:14px; color:#000; width:80%; margin:auto; display:block; margin-top:30px}
+input[type="button"]{ width:30%; height:50px; margin:auto; display:block}
+#log{ font-family:Verdana, Geneva, sans-serif; font-size:12px; text-align:center}
+</style>
+<script type="text/javascript" src="js/panino.js"></script>
+<script type="text/javascript" src="js/comunes.js"></script>
+<script type="text/javascript" src="js/paninoAJAX.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/transicion.js"></script>
+<script>
+ns.preguntas=[
+	{//1
+	'pregunta':'¿En cuánto tiempo descargás un juego de 20 MB en 4G y en 3G?',
+	'a':'4G: 25 segundos  3G: 3 minutos',
+	'b':'4G: 2 minutos  3G: 9 minutos',
+	'c':'4G: 5 minutos  3G: 15 minutos',
+	'corecta':'a'
+	},
+	{//2
+	'pregunta':'¿En cuánto tiempo subís una foto en 4G y en 3G?',
+	'a':'4G: 25 segundos  3G: 1 minuto',
+	'b':'4G: 40 segundos  3G: 2 minutos',
+	'c':'4G: 1 minuto  3G: 3 minutos',
+	'corecta':'a'
+	},	
+	{//3
+	'pregunta':'¿Cuánto tiempo demora el inicio de un video en streaming  en 4G y en 3G?',
+	'a':'4G: 1 minuto  3G: 3 minutos',
+	'b':'4G: 2 minutos  3G: 7 minutos',
+	'c':'4G: 30 segundos  3G: 1 a 5 minutos',
+	'corecta':'c'
+	},
+	{//4
+	'pregunta':'La velocidad 4G con respecto a la 3G es:',
+	'a':'Es 5 veces más rápida',
+	'b':'Es el doble más rápida',
+	'c':'Es 10 veces más rápida',
+	'corecta':'c'
+	},	
+	{//5
+	'pregunta':'¿Qué necesitás para pasarte a 4G?',
+	'a':'Un plan con Internet incluido compatible con 4G LTE',
+	'b':'4 Gigas de memoria extra en tu Smartphone',
+	'c':'Más de 4 Megapixeles en la cámara de tu Smartphone',
+	'corecta':'a'
+	},
+	{//6
+	'pregunta':'¿Cuándo uso 4G qué estoy utilizando en realidad?',
+	'a':'Datos (internet), mensajes de texto y llamados telefónicos',
+	'b':'Solo datos (internet)',
+	'c':'Solo para bajar música y videos en tiempo real',
+	'corecta':'b'
+	},
+	{//7
+	'pregunta':'¿Cómo se llama la función exclusiva de LG que permite tomar "selfies" con solo realizar un gesto frente a la cámara frontal?',
+	'a':'Easy foto',
+	'b':'Selfie Gestual',
+	'c':'QuickMemo',
+	'corecta':'b'
+	},
+	{//8
+	'pregunta':'¿Cómo se llama la función exclusiva de LG que posee el G3, que permite agrandar el teclado de escritura para escribir más cómodo?',
+	'a':'Smart Keyboard',
+	'b':'Tecla Slide',
+	'c':'Qslide',
+	'corecta':'a'
+	},	
+	{//9
+	'pregunta':'¿Si ya tengo un equipo con 4G LTE, necesito igualmente hacer cambio de SIMCARD o Chip para el uso de la red 4G LTE?',
+	'a':'Depende del Equipo',
+	'b':'Siempre hay que hacer el cambio de SIMCARD, es la única de color naranja',
+	'c':'No es necesario, el 4G se activa automáticamente',
+	'corecta':'b'
+	},
+	{//10
+	'pregunta':'¿Cómo se llama la aplicación para ver la cobertura de 4G en toda la Argentina?',
+	'a':'Movistar One',
+	'b':'Mi Movistar',
+	'c':'Cobertura 4G',
+	'corecta':'b'
+	},
+	{//11
+	'pregunta':'¿Cuál es la definición de la pantalla del Smartphone LG G3 de “5,5?',
+	'a':'HD',
+	'b':'Full HD',
+	'c':'Quad HD',
+	'corecta':'c'
+	},	
+	{//12
+	'pregunta':'¿Cuántos megapixeles tiene la cámara principal del LG G3 BEAT?',
+	'a':'1MP',
+	'b':'2MP',
+	'c':'13MP',
+	'corecta':'c'
+	}
+];
+
+function getPage(p,callback){
+		request(
+			p,
+			function(r){
+				$('contentapp').innerHTML=r;
+				if(typeof callback=='function'){
+					callback();
+				}
+			},
+			{}
+		);
+}
+function getRandomInt(min, max) {
+    	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function inArray(needle, haystack) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
+function print_JS(){ 
+    this.a=''; 
+    this.recorrer=function(o){ 
+        if(o.constructor==Array) 
+               this.a+='['; 
+        if(o.constructor==Object) 
+            this.a+='{'; 
+        for(var i in o){ 
+            if(o.constructor!=Array) 
+                this.a+=i+':'; 
+            if(o[i].constructor==Object){ 
+                   this.recorrer(o[i]); 
+            }else if(o[i].constructor==Array){ 
+                this.recorrer(o[i]); 
+            }else if(o[i].constructor==String){ 
+                this.a+='"'+o[i]+'",'; 
+            }else{ 
+                this.a+=o[i]+','; 
+            } 
+        } 
+        if(o.constructor==Object) 
+            this.a+='},'; 
+        if(o.constructor==Array) 
+            this.a+='],'; 
+        return this.a.substr(0,this.a.length-1).split(',}').join('}').split(',]').join(']'); 
+    } 
+} 
+
+function validar(){
+	/*var r=new print_JS(); 
+    alert(r.recorrer(ns.datos)); 
+	return;*/
+	if($('nombre').value.length<2){
+		alert('Por favor completá el campo nombre');
+		return;
+	}
+	if($('telefono').value.length<2){
+		alert('Por favor completá el campo teléfono');
+		return;
+	}
+	if($('edad').value.length<1){
+		alert('Por favor completá el campo edad');
+		return;
+	}
+	var usuario={};
+	usuario['nombre']=$('nombre').value;
+	usuario['telefono']=$('telefono').value;
+	usuario['compania']=$('compania').value;
+	usuario['procedencia']=$('procedencia').value;
+	usuario['edad']=$('edad').value;
+	usuario['tablet']=ns.tablet;
+	ns.datos.push(usuario);
+	localStorage.setItem('datos',JSON.stringify(ns.datos));
+	getPreguntas();
+}
+function inicio(){
+	if(!localStorage.getItem('datos')){
+		ns.datos=[];
+	}else{
+		ns.datos=JSON.parse(localStorage.getItem('datos'));
+	}
+	if(!localStorage.getItem('tablet')){
+		ns.tablet=getRandomInt(1, 100)+'_'+(+new Date());
+		localStorage.setItem('tablet',ns.tablet);
+	}else{
+		ns.tablet=localStorage.getItem('tablet');
+	}
+	if(!localStorage.getItem('premios')){
+		ns.premios={};
+	}else{
+		ns.premios=JSON.parse(localStorage.getItem('premios'));
+	}
+}
+DR(inicio);
+function siguientePregunta(){
+	if(ns.preg.length<1){
+		fin();
+		return;
+	}
+	ns.preguntaActual=ns.preg.shift();
+	getPage('pregunta1.html',setPreguntas);
+	
+}
+function reiniciar(){
+	getPage('inicio.html');
+}
+function getPreguntas(){
+	ns.preg=[];
+	ns.correctas=0;
+	ns.incorrectas=0;
+	var grupo=ns['preguntas'],pa;
+	while(ns.preg.length<5){
+		pa=grupo[getRandomInt(0, 11)];
+		if(!inArray(pa,ns.preg)){
+			ns.preg.push(pa);
+		}
+	}
+	siguientePregunta();
+}
+function setPreguntas(){
+	$('preg').innerHTML='<div class="numeropreg fontbold">'+(5-parseInt(ns.preg.length,10))+'</div>'+ns.preguntaActual['pregunta'];
+	$('opa').innerHTML=ns.preguntaActual['a'];
+	$('opb').innerHTML=ns.preguntaActual['b'];
+	$('opc').innerHTML=ns.preguntaActual['c'];
+}
+function evaluar(cual){
+	if(cual==ns.preguntaActual['corecta']){
+		ns.correctas++;
+		getPage('genial1.html');
+	}else{
+		ns.incorrectas++;
+		if(ns.incorrectas<3){
+			getPage('ups.html');
+		}else{
+			getPage('perdiste.html');
+		}
+	}
+	
+}
+function sigte(){
+	if(ns.preg.length>0 && ns.correctas<4){
+		ns.preguntaActual=ns.preg.shift();
+		getPage('pregunta1.html',setPreguntas);
+	}else{
+		fin();
+	}
+}
+function fin(){
+	var fecha=new Date();
+	var hoy=fecha.getDate()+'-'+(fecha.getMonth()+1)+'-'+fecha.getFullYear();
+	if(ns.correctas>=4){
+		if(hoy in ns.premios){
+			getPage('ganaste-cinta.html');
+		}else{
+			ns.premios[hoy]=1;
+			localStorage.setItem('premios',JSON.stringify(ns.premios));
+			getPage('ganaste-auricular.html');
+		}
+	}else if(ns.correctas==3){
+		getPage('ganaste-cinta.html');
+	}else{
+		getPage('perdiste.html');
+	}
+}
+function administrar(){
+	$('log').innerHTML='';
+	$('panel').style.display='block';
+}
+
+function testConexion(){
+		
+		var im=new Image(),
+		t=setTimeout(
+				function(){
+					$('log').innerHTML='No hay conexión a internet.';
+				},
+				5000
+		);
+		im.onload=function(){
+			clearTimeout(t);
+			saveDataInServer();
+			return;
+		};
+		im.onerror=function(){
+			clearTimeout(t);
+			$('log').innerHTML='No hay conexión a internet.';
+			return;
+		};
+		im.src='http://servidordeapps.com/images/ajax-loader.gif?'+(+new Date());
+		
+}
+	
+	
+function exportar(){
+	$('log').innerHTML='<img src="images/ajax-loader.gif">';
+	testConexion();
+}
+function saveDataInServer(){
+		var data={'proceso':'savedatamovistar','datos':localStorage.getItem('datos')}
+		request(
+				'http://servidordeapps.com/proceso2.php',
+				function(r){
+					localStorage.removeItem('datos');
+					inicio();
+					$('log').innerHTML='Los datos han sido guardados.';
+				},
+				data
+		);
+}
+</script>
+</head>
+
+<body>
+<div id="admin" onClick="administrar()"></div>
+<div id="panel" style="width:100%; height:100%; position:absolute; top:0; left:0;">
+
+<div style="font-family:Verdana, Geneva, sans-serif; font-size:30px; font-weight:bold; width:80px; height:80px; position:absolute; top:0px; right:0px; text-align:center; line-height:50px; color:#000" onClick="$('panel').style.display='none';">x</div>
+
+<label><br>
+<input type="button" name="" value="Exportar Datos" onClick="exportar()">
+</label>
+<div id="log"></div>
+
+</div>
+<div id="contentapp">
+<div id="contenedor1">
+<div class="pag1"></div>
+<div class="logomovistar"></div>
+<div class="botones fontregular" onclick=" getPage('formulario.html');">Comenzar</div>
+<div class="pielg"><div class="logo4g"></div></div>
+</div>
+</div>
+</body>
+</html>
