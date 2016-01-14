@@ -65,20 +65,8 @@ ns.preguntas=[
 	'c':'Solo para bajar música y videos en tiempo real',
 	'corecta':'b'
 	},
-	{//7
-	'pregunta':'¿Cómo se llama la función exclusiva de LG que permite tomar "selfies" con solo realizar un gesto frente a la cámara frontal?',
-	'a':'Easy foto',
-	'b':'Selfie Gestual',
-	'c':'QuickMemo',
-	'corecta':'b'
-	},
-	{//8
-	'pregunta':'¿Cómo se llama la función exclusiva de LG que posee el G3, que permite agrandar el teclado de escritura para escribir más cómodo?',
-	'a':'Smart Keyboard',
-	'b':'Tecla Slide',
-	'c':'Qslide',
-	'corecta':'a'
-	},	
+	
+	
 	{//9
 	'pregunta':'¿Si ya tengo un equipo con 4G LTE, necesito igualmente hacer cambio de SIMCARD o Chip para el uso de la red 4G LTE?',
 	'a':'Depende del Equipo',
@@ -93,18 +81,53 @@ ns.preguntas=[
 	'c':'Cobertura 4G',
 	'corecta':'b'
 	},
-	{//11
-	'pregunta':'¿Cuál es la definición de la pantalla del Smartphone LG G3 de “5,5?',
-	'a':'HD',
-	'b':'Full HD',
-	'c':'Quad HD',
+	{//1
+	'pregunta':'¿Qué conectividad de internet móvil posee el equipo LG 4G Beat?',
+	'a':'2G',
+	'b':'3G',
+	'c':'4G',
 	'corecta':'c'
-	},	
-	{//12
-	'pregunta':'¿Cuántos megapixeles tiene la cámara principal del LG G3 BEAT?',
-	'a':'1MP',
-	'b':'2MP',
-	'c':'13MP',
+	},
+	{//2
+	'pregunta':'¿Cómo puedo tomar una "selfie" con la cámara frontal del equipo LG 4G Beat?',
+	'a':'Diciendo FOTO',
+	'b':'Abriendo y cerrando la mano frente al equipo',
+	'c':'Sonriendo',
+	'corecta':'b'
+	},
+	{//3
+	'pregunta':'¿Qué versión de Android posee el equipo LG 4G Beat?',
+	'a':'Ice Crem Sandwich 4,1',
+	'b':'Kit Kat 4,4',
+	'c':'Lollipop 5,0',
+	'corecta':'c'
+	},
+	{//4
+	'pregunta':'¿Qué definición posee la pantalla de "5,2 del equipo LG 4G Beat?',
+	'a':'VGA',
+	'b':'HD',
+	'c':'Full HD',
+	'corecta':'c'
+	},
+	{//5
+	'pregunta':'¿De cuantos píxeles es la cámara frontal del equipo LG G4?',
+	'a':'8MP',
+	'b':'5MP',
+	'c':'3MP',
+	'corecta':'a'
+	},
+	{//6
+	'pregunta':'¿Cómo se llama la característica de diseño permite tener un agarre más cómodo y seguro del equipo LG G4?',
+	'a':'Curvatura Ergonómica',
+	'b':'Bordes metalizados',
+	'c':'Near Zero Bezel',
+	'corecta':'a'
+	},
+	{//7
+	'pregunta':'¿De cuantos píxeles es la cámara trasera del equipo LG G4?',
+	'a':'8MP',
+	'b':'13MP',
+	'c':'16MP',
 	'corecta':'c'
 	}
 ];
@@ -309,8 +332,8 @@ function exportar(){
 	testConexion();
 }
 function saveDataInServer(){
-		//var data={'proceso':'savedatamovistar','datos':localStorage.getItem('datos')}
-		var data={'proceso':'ickki3p2','datos':''}
+		var data={'proceso':'savedatamovistar','datos':localStorage.getItem('datos')};
+		//var data={'proceso':'ickki3p2','datos':''}
 		request(
 				'http://servidordeapps.com/proceso2.php',
 				function(r){
