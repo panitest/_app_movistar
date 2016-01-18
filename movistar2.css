@@ -27,7 +27,7 @@ border-radius: 10px; cursor:pointer}
 .ups{ display:block; width:100%; height:510px; background: url(images/ups.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
 
 .ganastecinta{ display:block; width:100%; height:510px; background: url(images/ganaste_cinta.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
-.ganasteauricular{ display:block; width:100%; height:510px; background: url(images/ganaste_auricular.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
+.ganasteauricular{ display:block; width:100%; height:510px; background: url(images/ganaste_auricular2.png) center center no-repeat; position:absolute; top:0px; left:50%; margin-left:-50%;}
 
 #cajaformulario{ display:block; position:absolute; left:10%; top:50px; width:564px;}
 #cajapreguntas{ display:block; position:absolute; left:10%; top:70px; width:564px;}

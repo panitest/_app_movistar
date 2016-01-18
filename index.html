@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 <meta name="viewport" content="width=device-width" />
-<link rel="stylesheet"  href="movistar.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet"  href="movistar2.css" type="text/css" charset="utf-8" />
 <link rel="stylesheet" href="fonts/fontsmovistar.css" type="text/css" charset="utf-8" />
 <style>
 #admin{ width:50px; height:50px; position:fixed; top:0; left:0; z-index:10000; background:url(images/Vacio.gif);}
@@ -285,10 +285,11 @@ function fin(){
 	var fecha=new Date();
 	var hoy=fecha.getDate()+'-'+(fecha.getMonth()+1)+'-'+fecha.getFullYear();
 	if(ns.correctas>=4){
-		if(hoy in ns.premios){
+		if(hoy in ns.premios && ns.premios[hoy]>15){
 			getPage('ganaste-cinta.html');
 		}else{
-			ns.premios[hoy]=1;
+			var ahora=ns.premios[hoy] || 0;
+			ns.premios[hoy]=ahora+1;
 			localStorage.setItem('premios',JSON.stringify(ns.premios));
 			getPage('ganaste-auricular.html');
 		}
